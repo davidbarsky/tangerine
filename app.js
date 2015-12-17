@@ -10,6 +10,7 @@ const db = new Database()
 app.use(BodyParser.urlencoded({extended: true}))
 app.use(BodyParser.json())
 
+// routes
 app.get("/", (req, res) => {
 	res.json( {"message": "you're home now!"} )
 })
@@ -28,6 +29,7 @@ app.use((err, req, res, next) => {
 	res.status(500).json( {"message": "Something broke. We're on it."} )
 })
 
+// server startup
 const server = app.listen(3000, () => {
 	let host = server.address().address
 	let port = server.address().port
