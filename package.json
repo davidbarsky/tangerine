@@ -1,0 +1,30 @@
+{
+  "name": "cali",
+  "repository": {
+    "url": "github.com/davidbarsky/cali"
+  },
+  "version": "1.0.0",
+  "engines": {
+    "node": "5.3.0",
+    "npm": "3.3.12"
+  },
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --use-strict --harmony .",
+    "test": "mocha"
+  },
+  "author": {
+    "name": "David Barsky",
+    "email": "me@davidbarsky.com",
+    "url": "davidbarsky.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.14.2",
+    "connect": "3.4.0",
+    "express": "4.13.3",
+    "mocha": "2.3.4",
+    "pg-promise": "2.8.4"
+  }
+}
