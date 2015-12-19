@@ -1,11 +1,10 @@
-// imports
+// libraries
 const Express = require("express")
 const BodyParser = require("body-parser")
-const Database = require("./database.js")
 
 // initialization
+const user = require("./controllers/users.js")
 const app = Express()
-const db = new Database()
 
 app.use(BodyParser.urlencoded({extended: true}))
 app.use(BodyParser.json())
@@ -15,19 +14,7 @@ app.get("/", (req, res) => {
 	res.json( {"message": "you're home now!"} )
 })
 
-app.get("/user/:id", (req, res, next) => {
-	let result = db.getUser(req.params.id)
-	
-	result.then((data) => {
-		res.json(data)
-	}).catch(next)
-})
-
-// The error handling route. It should be called in each `.catch()` block.
-app.use((err, req, res, next) => {
-	console.log(err.stack)
-	res.status(500).json( {"message": "Something broke. We're on it."} )
-})
+app.use("/user", user)
 
 // server startup
 const server = app.listen(3000, () => {

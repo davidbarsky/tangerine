@@ -21,10 +21,12 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bluebird": "3.1.1",
     "body-parser": "1.14.2",
     "connect": "3.4.0",
     "express": "4.13.3",
     "mocha": "2.3.4",
-    "pg-promise": "2.8.4"
+    "pg-promise": "2.8.4",
+    "tern-node-express": "0.3.0"
   }
 }
