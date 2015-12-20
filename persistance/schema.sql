@@ -18,7 +18,7 @@ create table if not exists workouts (
 
 create table if not exists exercises (
     exercise_id serial NOT NULL PRIMARY KEY,
-    user_id integer NOT NULL references users
+    workout_id integer NOT NULL references workouts
 );
 
 create table if not exists friends (
