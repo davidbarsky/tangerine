@@ -7,22 +7,26 @@ create table if not exists users (
 );
 
 create table if not exists hashed_tokens (
-    user_id integer NOT NULL references users
+    user_id integer NOT NULL REFERENCES users ON UPDATE cascade ON DELETE cascade,
     hashed_fb_token varchar(255)
 );
 
 create table if not exists workouts (
     workout_id serial NOT NULL PRIMARY KEY,
-    user_id integer NOT NULL references users
+    user_id integer NOT NULL REFERENCES users ON UPDATE cascade ON DELETE cascade,
+    date_completed date NOT NULL
 );
 
 create table if not exists exercises (
     exercise_id serial NOT NULL PRIMARY KEY,
-    workout_id integer NOT NULL references workouts
+    workout_id integer NOT NULL references workouts ON UPDATE cascade ON DELETE cascade,
+    exercise_name varchar(255) NOT NULL,
+    exercise_weight integer NOT NULL,
+    completed_reps integer NOT NULL
 );
 
 create table if not exists friends (
     friends_id serial PRIMARY KEY,
-    first_friend integer NOT NULL references users
-    second_friend integer NOT NULL references users
+    first_friend integer NOT NULL references users ON UPDATE cascade ON DELETE cascade,
+    second_friend integer NOT NULL references users ON UPDATE cascade ON DELETE cascade
 )

@@ -23,7 +23,7 @@ app.use("/workout", workoutsEndpoint)
 
 // server startup
 const server = app.listen(3000, () => {
-	console.log("The app is running.")
+	console.log("Tangerine is running.")
 })
 
 module.exports = server
