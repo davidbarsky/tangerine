@@ -1,7 +1,7 @@
 {
-  "name": "cali",
+  "name": "tangerine",
   "repository": {
-    "url": "github.com/davidbarsky/cali"
+    "url": "github.com/davidbarsky/tangerine"
   },
   "version": "1.0.0",
   "engines": {
@@ -28,6 +28,7 @@
     "pg-promise": "2.8.4"
   },
   "devDependencies": {
+    "nodemon": "1.8.1",
     "mocha": "2.3.4",
     "chai": "3.4.1",
     "chai-http": "1.0.0"
