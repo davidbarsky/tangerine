@@ -1,25 +1,29 @@
+"use strict"
+
 // libraries
-const Express = require("express")
-const BodyParser = require("body-parser")
+const express = require("express")
+const bodyParser = require("body-parser")
 
 // initialization
-const user = require("./controllers/users.js")
-const app = Express()
+const usersEndpoint = require("./endpoints/users.js")
+const workoutsEndpoint = require("./endpoints/workouts.js")
 
-app.use(BodyParser.urlencoded({extended: true}))
-app.use(BodyParser.json())
+const app = express()
+
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 // routes
 app.get("/", (req, res) => {
 	res.json( {"message": "you're home now!"} )
 })
 
-app.use("/user", user)
+app.use("/user", usersEndpoint)
+app.use("/workout", workoutsEndpoint)
 
 // server startup
 const server = app.listen(3000, () => {
-	let host = server.address().address
-	let port = server.address().port
-
-	console.log(`Example app listening on ${host, port}`)
+	console.log("The app is running.")
 })
+
+module.exports = server
