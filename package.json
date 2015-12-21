@@ -19,6 +19,9 @@
     "email": "me@davidbarsky.com",
     "url": "davidbarsky.com"
   },
+  "cacheDirectories": [
+    "node_modules"
+  ],
   "license": "MIT",
   "dependencies": {
     "bluebird": "3.1.1",
@@ -26,7 +29,7 @@
     "connect": "3.4.0",
     "express": "4.13.3",
     "passport": "0.3.2",
-    "passport-facebook-token": "3.0.6",
+    "passport-http": "0.3.0",
     "pg-promise": "2.8.4"
   },
   "devDependencies": {

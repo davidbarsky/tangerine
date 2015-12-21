@@ -2,16 +2,33 @@
 
 // libraries
 const express = require("express")
-const bodyParser = require("body-parser")
+const bodyparser = require("body-parser")
+const passport = require("passport")
+const BasicAuthStrategy = require('passport-http').BasicStrategy
 
-// initialization
+// local files
 const usersEndpoint = require("./endpoints/users.js")
 const workoutsEndpoint = require("./endpoints/workouts.js")
+const Database = require("./persistance/database.js")
 
+// initialiatoin
 const app = express()
+const db = new Database()
 
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+passport.use(new BasicAuthStrategy(
+    (facebookID, facebookToken, callback) => {
+        let result = db.authenticateUser(facebookID, facebookToken)
+        
+        result.then((user) => {
+            return callback(user)
+        }).catch((error) => {
+            return callback(error)
+        })
+    }
+))
+
+app.use(bodyparser.urlencoded({extended: true}))
+app.use(bodyparser.json())
 
 // routes
 app.get("/", (req, res) => {
@@ -19,7 +36,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/user", usersEndpoint)
-app.use("/workout", workoutsEndpoint)
+app.use("/workout", passport.authenticate('basic'), workoutsEndpoint)
 
 // server startup
 const server = app.listen(3000, () => {

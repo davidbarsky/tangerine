@@ -1,9 +1,9 @@
 "use strict"
 
-const Express = require("express")
+const express = require("express")
 const Database = require("../persistance/database.js")
 
-const router = Express.Router()
+const router = express.Router()
 const db = new Database()
 
 router.get("/:id", (req, res, next) => {
