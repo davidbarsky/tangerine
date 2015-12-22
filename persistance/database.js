@@ -4,7 +4,7 @@ const PostgresSQL = require('pg-promise')()
 const connection = {
     host: 'localhost'
   , port: 5432
-  , database: 'ba_dev'
+  , database: 'tangerine_dev'
   , user: 'David'
   , password: ''
 }
@@ -21,8 +21,7 @@ class Database {
              WHERE A.user_id = B.user_id
              AND A.user_id = $1
              AND B.hashed_fb_token = $2`
-             , userID
-             , hashedToken)
+             , [userID, hashedToken])
     }
 
 	getUser(userID) {
