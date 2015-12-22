@@ -1,17 +1,17 @@
 "use strict"
 
-const PostgresSQL = require('pg-promise')()
-const connection = {
-    host: 'localhost'
-  , port: 5432
-  , database: 'tangerine_dev'
-  , user: 'David'
-  , password: ''
-}
+const PostgresSQL = require("pg-promise")()
+const env = require("dotenv").load()
 
 class Database {
 	constructor() {
-		this.db = PostgresSQL(connection)
+		this.db = PostgresSQL({
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            database: process.env.DB_NAME,
+            username: process.env.DB_USER,
+            password: process.env.DB_PASS
+        })
 	}
     
     authenticateUser(userID, hashedToken) {
