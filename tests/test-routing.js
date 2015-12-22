@@ -1,9 +1,9 @@
 "use strict";
 
 const mocha = require("mocha")
-const chai = require("chai")
-const expect = require("chai").expect
-const chaiHTTP = require("chai-http")
+    , chai = require("chai")
+    , expect = require("chai").expect
+    , chaiHTTP = require("chai-http")
 
 const server = require("../app.js")
 chai.use(chaiHTTP)

@@ -2,13 +2,15 @@
 
 // libraries
 const express = require("express")
-const bodyparser = require("body-parser")
-const passport = require("passport")
-const BasicAuthStrategy = require('passport-http').BasicStrategy
+    , bodyparser = require("body-parser")
+    , passport = require("passport")
+    , BasicAuthStrategy = require('passport-http').BasicStrategy
 
 // local files
 const usersEndpoint = require("./endpoints/users.js")
-const workoutsEndpoint = require("./endpoints/workouts.js")
+    , workoutsEndpoint = require("./endpoints/workouts.js")
+    , friendsEndpoint = require("./endpoints/friends.js")
+
 const Database = require("./persistance/database.js")
 
 // initialiatoin
@@ -37,6 +39,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", usersEndpoint)
 app.use("/workout", passport.authenticate('basic'), workoutsEndpoint)
+app.use("/friend", passport.authenticate('basic'), friendsEndpoint)
 
 // server startup
 const server = app.listen(3000, () => {

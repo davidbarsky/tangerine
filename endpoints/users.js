@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require("express")
-const Database = require("../persistance/database.js")
+    , Database = require("../persistance/database.js")
 
 const router = express.Router()
 const db = new Database()
