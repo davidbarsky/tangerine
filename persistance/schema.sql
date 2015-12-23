@@ -1,14 +1,14 @@
 create table if not exists users (
     user_id serial NOT NULL PRIMARY KEY,
     UNIQUE(user_id),
-    fb_id integer NOT NULL,
+    facebook_id integer NOT NULL,
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL
 );
 
-create table if not exists hashed_tokens (
+create table if not exists tokens (
     user_id integer NOT NULL REFERENCES users ON DELETE cascade,
-    hashed_fb_token varchar(255)
+    hashed_token varchar(255)
 );
 
 create table if not exists workouts (
