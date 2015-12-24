@@ -14,6 +14,8 @@ router.get("/:id", (req, res, next) => {
 	}).catch(next)
 })
 
+router.post()
+
 router.post("/new", (req, res, next) => {
     
 })

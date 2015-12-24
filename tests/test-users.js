@@ -6,13 +6,18 @@ const mocha = require("mocha")
     , chaiHTTP = require("chai-http")
 
 const server = require("../app.js")
+const usersController = require("../controllers/users.js")
 
 chai.use(chaiHTTP)
 
 describe("User Resource", () => {
+    before("Insert a user into the database", (done) => {
+        usersController.add
+    })
+    
     it("should not have an index route", (done) => {
         chai.request(server)
-            .get("/user")
+            .get("/user/")
             .end((err, res) => {
                 expect(err).to.be.null
                 expect(res).to.have.status(404)

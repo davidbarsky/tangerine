@@ -31,15 +31,3 @@ describe("Root", () => {
             })
     })
 })
-
-describe("User", () => {
-    it("should not be authenticated", (done) => {
-        chai.request(server)
-            .get("/user/1")
-            .end((err, res) => {
-                expect(err).to.be.null
-                expect(res).to.have.status(200)
-                done()
-            })
-    })  
-})
