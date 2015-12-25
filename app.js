@@ -33,7 +33,7 @@ app.use(bodyparser.json())
 
 // routes
 app.get('/', (req, res) => {
-	res.json( {'message': 'you're home now!'} )
+	res.json( {'message': 'you are home now!'} )
 })
 
 app.use('/user', usersController)
