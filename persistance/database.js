@@ -1,8 +1,8 @@
-"use strict"
+'use strict'
 
-const PostgresSQL = require("pg-promise")()
-const bcrypt = require("bcrypt")
-const env = require("dotenv").load()
+const PostgresSQL = require('pg-promise')()
+const bcrypt = require('bcrypt')
+const env = require('dotenv').load()
 
 class Database {
 	constructor() {
@@ -33,19 +33,19 @@ class Database {
     }
 
 	selectUser(userID) {
-		return this.db.one("SELECT * FROM users WHERE user_id = $1", userID)
+		return this.db.one('SELECT * FROM users WHERE user_id = $1', userID)
 	}
 
     deleteUser(userID) {
-        return this.db.result("DELETE FROM users WHERE user_id = $1", userID)
+        return this.db.result('DELETE FROM users WHERE user_id = $1', userID)
     }
 
     getWorkout(workoutID) {
-        return this.db.one("select * FROM workouts WHERE workout_id = $1", workoutID)
+        return this.db.one('select * FROM workouts WHERE workout_id = $1', workoutID)
     }
 
     getAllWorkouts(userID) {
-        return this.db.query("SELECT * FROM workouts WHERE user_id = $1", userID)
+        return this.db.query('SELECT * FROM workouts WHERE user_id = $1', userID)
     }
 }
 

@@ -1,18 +1,18 @@
-"use strict"
+'use strict'
 
-const mocha = require("mocha")
-    , chai = require("chai")
-    , expect = require("chai").expect
-    , chaiHTTP = require("chai-http")
+const mocha = require('mocha')
+    , chai = require('chai')
+    , expect = require('chai').expect
+    , chaiHTTP = require('chai-http')
 
-const server = require("../app.js")
+const server = require('../app.js')
 
 chai.use(chaiHTTP)
 
-describe("Root", () => {
-    it("should not be authenticated", (done) => {
+describe('Root', () => {
+    it('should not be authenticated', (done) => {
         chai.request(server)
-            .get("/")
+            .get('/')
             .end((err, res) => {
                 expect(err).to.be.null
                 expect(res).to.have.status(200)
@@ -20,10 +20,10 @@ describe("Root", () => {
             })
     })
 
-    it("should ignore authentication credentials", (done) => {
+    it('should ignore authentication credentials', (done) => {
         chai.request(server)
-            .get("/")
-            .auth("1", "hello123")
+            .get('/')
+            .auth('1', 'hello123')
             .end((err, res) => {
                 expect(err).to.be.null
                 expect(res).to.have.status(200)
