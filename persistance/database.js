@@ -1,6 +1,7 @@
 "use strict"
 
 const PostgresSQL = require("pg-promise")()
+const bcrypt = require("bcrypt")
 const env = require("dotenv").load()
 
 class Database {
@@ -15,25 +16,36 @@ class Database {
 	}
     
     authenticateUser(userID, hashedToken) {
-        return this.db.one(
-            `SELECT *
-             FROM users AS A, hashed_tokens AS B
-             WHERE A.user_id = B.user_id
-             AND A.user_id = $1
-             AND B.hashed_fb_token = $2`
-             , [userID, hashedToken])
+        return this.db.one(`
+            SELECT *
+            FROM users AS A
+            WHERE user_id = $1 AND
+            AND hashed_token = $2`
+            , [userID, hashedToken])
+    }
+    
+    newUser(facebook_id, token, name, email) {
+        return this.db.none(`
+            insert into
+            users(facebook_id, hashed_token, name, email)
+            values($1, $2, $3, $4)`
+            , [facebook_id, token, name, email])
     }
 
-	getUser(userID) {
-		return this.db.one("select * from users where user_id = $1", userID)
+	selectUser(userID) {
+		return this.db.one("SELECT * FROM users WHERE user_id = $1", userID)
 	}
+    
+    deleteUser(userID) {
+        return this.db.result("DELETE FROM users WHERE user_id = $1", userID)
+    }
    
     getWorkout(workoutID) {
-        return this.db.one("select * from workouts where workout_id = $1", workoutID)
+        return this.db.one("select * FROM workouts WHERE workout_id = $1", workoutID)
     }
     
     getAllWorkouts(userID) {
-        return this.db.query("select * from workouts where user_id = $1", userID)
+        return this.db.query("SELECT * FROM workouts WHERE user_id = $1", userID)
     }
 }
 
