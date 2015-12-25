@@ -11,7 +11,7 @@ const usersController = require("../controllers/users.js")
 
 chai.use(chaiHTTP)
 
-describe("Users Resource", () => { 
+describe("Users Resource", () => {
     it("should add a user", (done) => {
         chai.request(server)
             .post("/user/new")
@@ -27,7 +27,7 @@ describe("Users Resource", () => {
                 done()
             })
     })
-    
+
     it("should get a specific user", (done) => {
         chai.request(server)
             .get("/user/1")
@@ -37,8 +37,8 @@ describe("Users Resource", () => {
                 expect(res).to.have.status(200)
                 done()
             })
-    })  
-    
+    })
+
     it("should remove the user from the database", (done) => {
         chai.request(server)
             .post("/user/delete/2")
@@ -49,7 +49,7 @@ describe("Users Resource", () => {
                 done()
             })
     })
-    
+
     it("should not have an index route", (done) => {
         chai.request(server)
             .get("/user/")

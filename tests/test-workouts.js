@@ -17,5 +17,5 @@ describe("Workouts Resources", () => {
                 expect(err).not.to.be.null
                 done()
             })
-    })  
+    })
 })

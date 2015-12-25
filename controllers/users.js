@@ -22,7 +22,7 @@ router.post("/new", (req, res, next) => {
         , req.body.name
         , req.body.email
     )
-    
+
     result.then((data) => {
         res.send(data)
     }).catch(next)
@@ -30,7 +30,7 @@ router.post("/new", (req, res, next) => {
 
 router.post("/delete/:id", (req, res, next) => {
     let result = db.deleteUser(req.params.id)
-    
+
     result.then((data) => {
         res.json(data)
     }).catch((err) => {

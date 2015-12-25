@@ -20,7 +20,7 @@ const db = new Database()
 passport.use(new BasicAuthStrategy(
     (facebookID, facebookToken, callback) => {
         let result = db.authenticateUser(facebookID, facebookToken)
-        
+
         result.then((user) => {
             return callback(user)
         }).catch((error) => {
