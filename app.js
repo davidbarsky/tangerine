@@ -7,9 +7,10 @@ const express = require('express')
     , BasicAuthStrategy = require('passport-http').BasicStrategy
 
 // local files
-const usersController = require('./controllers/users.js')
-    , workoutsController = require('./controllers/workouts.js')
-    , friendsController = require('./controllers/friends.js')
+const usersController = require('./controllers/users-controller.js')
+    , workoutsController = require('./controllers/workouts-controller.js')
+    , friendsController = require('./controllers/friends-controller.js')
+    , loginController = require('./controllers/login-controller.js')
 
 const Database = require('./persistance/database.js')
 
@@ -36,7 +37,8 @@ app.get('/', (req, res) => {
 	res.json( {'message': 'you are home now!'} )
 })
 
-app.use('/user', usersController)
+app.use('/login', loginController)
+app.use('/user', passport.authenticate('basic'), usersController)
 app.use('/workout', passport.authenticate('basic'), workoutsController)
 app.use('/friend', passport.authenticate('basic'), friendsController)
 

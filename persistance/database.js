@@ -15,13 +15,13 @@ class Database {
         })
 	}
 
-    authenticateUser(userID, hashedToken) {
+    authenticateUser(email, hashedToken) {
         return this.db.one(`
             SELECT *
             FROM users AS A
-            WHERE user_id = $1 AND
-            AND hashed_token = $2`
-            , [userID, hashedToken])
+            WHERE email=$1
+            AND hashed_token=$2`
+            , [email, hashedToken])
     }
 
     newUser(facebook_id, token, name, email) {
@@ -37,7 +37,7 @@ class Database {
 	}
 
     deleteUser(userID) {
-        return this.db.result('DELETE FROM users WHERE user_id = $1', userID)
+        return this.db.none('DELETE FROM users WHERE user_id = $1', userID)
     }
 
     getWorkout(workoutID) {
