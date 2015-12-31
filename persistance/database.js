@@ -1,8 +1,8 @@
 'use strict'
 
 const PostgresSQL = require('pg-promise')()
-const bcrypt = require('bcrypt')
 const env = require('dotenv').load()
+const auth = require('../lib/auth.js')
 
 class Database {
 	constructor() {
@@ -25,11 +25,14 @@ class Database {
     }
 
     newUser(facebook_id, token, name, email) {
+        
+        let hashed_token = auth.hash_password(token)
+        
         return this.db.none(`
             insert into
             users(facebook_id, hashed_token, name, email)
             values($1, $2, $3, $4)`
-            , [facebook_id, token, name, email])
+            , [facebook_id, hashed_token, name, email])
     }
 
 	selectUser(userID) {

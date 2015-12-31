@@ -2,15 +2,15 @@
 
 // libraries
 const express = require('express')
-    , bodyparser = require('body-parser')
-    , passport = require('passport')
-    , BasicAuthStrategy = require('passport-http').BasicStrategy
+const bodyparser = require('body-parser')
+const passport = require('passport')
+const BasicAuthStrategy = require('passport-http').BasicStrategy
 
 // local files
 const usersController = require('./controllers/users-controller.js')
-    , workoutsController = require('./controllers/workouts-controller.js')
-    , friendsController = require('./controllers/friends-controller.js')
-    , loginController = require('./controllers/login-controller.js')
+const workoutsController = require('./controllers/workouts-controller.js')
+const friendsController = require('./controllers/friends-controller.js')
+const loginController = require('./controllers/login-controller.js')
 
 const Database = require('./persistance/database.js')
 
