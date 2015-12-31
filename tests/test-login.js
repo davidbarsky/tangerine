@@ -5,7 +5,7 @@ const mocha = require('mocha')
     , expect = require('chai').expect
     , chaiHTTP = require('chai-http')
 
-const token = require('./sample-data.js')
+const token = require('../tests/sample-data.js')
 const server = require('../app.js')
 
 chai.use(chaiHTTP)
@@ -17,7 +17,7 @@ describe('Users Resource', () => {
             .post('/login/new')
             .send({
                 'facebook_id': '124558987917426'
-                , 'token': token.firstFakeUserToken
+                , 'token': token.firstFakeToken
                 , 'name': 'Test User'
                 , 'email': 'open_brxtdpk_user@tfbnw.net'
             })

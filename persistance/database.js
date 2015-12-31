@@ -26,7 +26,7 @@ class Database {
 
     newUser(facebook_id, token, name, email) {
         
-        let hashed_token = auth.hash_password(token)
+        const hashed_token = auth.hash_token(token)
         
         return this.db.none(`
             insert into
