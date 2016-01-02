@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require('express')
-    , Database = require('../persistance/database.js')
+const Database = require('../persistance/database.js')
 
 const router = express.Router()
 const db = new Database()
@@ -14,12 +14,18 @@ router.get('/:id', (req, res, next) => {
     }).catch(next)
 })
 
-router.get('/'), (req, res, next) => {
+router.get('/', (req, res, next) => {
     let result = db.getAllWorkouts(res.params.id)
 
     result.then((data) => {
         res.json(data)
     }).catch(next)
-}
+})
+
+router.post('/new', (req, res, next) => {
+    let result = db.newWorkout(
+        
+    )
+})
 
 module.exports = router

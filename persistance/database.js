@@ -15,7 +15,9 @@ class Database {
         })
 	}
 
-    authenticateUser(email, hashedToken) {
+    authenticateUser(email, token) {
+        let hashedToken = auth.hash_token(token)
+        
         return this.db.one(`
             SELECT *
             FROM users AS A
@@ -24,27 +26,25 @@ class Database {
             , [email, hashedToken])
     }
 
-    newUser(facebook_id, token, name, email) {
-        
-        const hashed_token = auth.hash_token(token)
+    newUser(facebookID, token, name, email) {
+        let hashedToken = auth.hash_token(token)
         
         return this.db.none(`
-            insert into
+            INSERT INTO
             users(facebook_id, hashed_token, name, email)
             values($1, $2, $3, $4)`
-            , [facebook_id, hashed_token, name, email])
+            , [facebookID, hashedToken, name, email])
     }
-
-	selectUser(userID) {
-		return this.db.one('SELECT * FROM users WHERE user_id = $1', userID)
-	}
-
-    deleteUser(userID) {
-        return this.db.none('DELETE FROM users WHERE user_id = $1', userID)
+    
+    newWorkout(workout_id, user_id, data_completed) {
+        return this.db.one(`
+            INSERT INTO
+            users(facebook)
+        `)
     }
 
     getWorkout(workoutID) {
-        return this.db.one('select * FROM workouts WHERE workout_id = $1', workoutID)
+        return this.db.one('SELECT * FROM workouts WHERE workout_id = $1', workoutID)
     }
 
     getAllWorkouts(userID) {
