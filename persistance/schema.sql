@@ -2,7 +2,8 @@ create table if not exists users (
     user_id serial NOT NULL PRIMARY KEY,
     UNIQUE(user_id),
     facebook_id bigint NOT NULL,
-    facebook_token varchar(255),
+    facebook_token varchar(255) NOT NULL,
+    bearer_token varchar(255) NOT NULL,
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL
 );

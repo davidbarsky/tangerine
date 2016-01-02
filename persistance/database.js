@@ -16,7 +16,7 @@ class Database {
 	}
 
     authenticateUser(email, token) {
-        let hashedToken = auth.hash_token(token)
+        let hashedToken = auth.hasToken(token) 
         
         return this.db.one(`
             SELECT *
@@ -26,14 +26,16 @@ class Database {
             , [email, hashedToken])
     }
 
-    newUser(facebookID, token, name, email) {
-        let hashedToken = auth.hash_token(token)
+    newUser(facebookID, facebookToken, name, email) {
+        let hashedFacebookToken = auth.hashToken(facebookToken)
+        let uuid = auth.generateUUID()
+        let bearerToken = auth.hashToken(uuid)
         
         return this.db.none(`
             INSERT INTO
-            users(facebook_id, facebook_token, name, email)
-            values($1, $2, $3, $4)`
-            , [facebookID, hashedToken, name, email])
+            users(facebook_id, facebook_token, bearer_token, name, email)
+            values($1, $2, $3, $4, $5)`
+            , [facebookID, hashedFacebookToken, bearerToken, name, email])
     }
     
     newWorkout(workout_id, user_id, data_completed) {
