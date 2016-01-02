@@ -22,7 +22,7 @@ class Database {
             SELECT *
             FROM users AS A
             WHERE email=$1
-            AND hashed_token=$2`
+            AND facebook_token=$2`
             , [email, hashedToken])
     }
 
@@ -31,7 +31,7 @@ class Database {
         
         return this.db.none(`
             INSERT INTO
-            users(facebook_id, hashed_token, name, email)
+            users(facebook_id, facebook_token, name, email)
             values($1, $2, $3, $4)`
             , [facebookID, hashedToken, name, email])
     }
