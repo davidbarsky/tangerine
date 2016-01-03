@@ -1,10 +1,9 @@
 'use strict'
 
 const express = require('express')
-const Database = require('../persistance/database.js')
+const db = require('../persistance/database.js')
 
 const router = express.Router()
-const db = new Database()
 
 router.get('/:id', (req, res, next) => {
     let result = db.getWorkout(req.params.id)

@@ -12,11 +12,10 @@ const workoutsController = require('./controllers/workouts-controller.js')
 const friendsController = require('./controllers/friends-controller.js')
 const loginController = require('./controllers/login-controller.js')
 
-const Database = require('./persistance/database.js')
+const db = require('./persistance/database.js')
 
 // initialiatoin
 const app = express()
-const db = new Database()
 
 passport.use(new BasicAuthStrategy(
     (facebookID, facebookToken, callback) => {

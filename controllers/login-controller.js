@@ -3,10 +3,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const Database = require('../persistance/database.js')
+const db = require('../persistance/database.js')
 
 const router = express.Router()
-const db = new Database()
 
 router.post('/new', (req, res, next) => {
     let result = db.newUser(
