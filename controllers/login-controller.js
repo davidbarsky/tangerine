@@ -2,17 +2,23 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const passport = require('passport')
 const db = require('../persistance/database.js')
-
+const cache = require('../persistance/cache.js')
+const auth = require('../lib/auth.js')
 const router = express.Router()
 
 router.post('/new', (req, res, next) => {
+    let hashedToken = auth.hashToken(req.body.token)
+    let uuid = auth.generateUUID()
+    let bearerToken = auth.hashToken(uuid)
+    
+    cache.setUser(req.body.facebookID, hashedToken)   
     let result = db.newUser(
-        req.body.facebook_id
-        , req.body.token
-        , req.body.name
-        , req.body.email
+        req.body.facebookID,
+        hashedToken,
+        bearerToken,
+        req.body.name,
+        req.body.email
     )
 
     result.then((data) => {

@@ -1,9 +1,9 @@
 'use strict'
 
 const mocha = require('mocha')
-    , chai = require('chai')
-    , expect = require('chai').expect
-    , chaiHTTP = require('chai-http')
+const chai = require('chai')
+const expect = require('chai').expect
+const chaiHTTP = require('chai-http')
 
 const token = require('../tests/sample-data.js')
 const server = require('../app.js')
@@ -16,10 +16,10 @@ describe('Users Resource', () => {
         chai.request(server)
             .post('/login/new')
             .send({
-                'facebook_id': '124558987917426'
-                , 'token': token.firstFakeToken
-                , 'name': 'Test User'
-                , 'email': 'open_brxtdpk_user@tfbnw.net'
+                'facebookID': '124558987917426',
+                'token': token.firstFakeToken,
+                'name': 'Test User',
+                'email': 'open_brxtdpk_user@tfbnw.net'
             })
             .end((err, res) => {
                 expect(err).to.be.null
