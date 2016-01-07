@@ -11,7 +11,7 @@ const _db = pg({
     password: process.env.DB_PASS
 })
 
-exports.newUser = (facebookID, facebookToken, bearerToken, name, email) => {
+exports.newUser = function(facebookID, facebookToken, bearerToken, name, email) {
     return _db.none(`
         INSERT INTO
         users(facebook_id, facebook_token, bearer_token, name, email)
@@ -19,14 +19,14 @@ exports.newUser = (facebookID, facebookToken, bearerToken, name, email) => {
         , [facebookID, facebookID, bearerToken, name, email])
 }
 
-exports.newWorkout = (workout_id, user_id, data_completed) => {
+exports.newWorkout = function(workout_id, user_id, data_completed) {
     
 }
 
-exports.getWorkout = (workoutID) => {
+exports.getWorkout = function(workoutID) {
     return _db.one('SELECT * FROM workouts WHERE workout_id = $1', workoutID)
 }
 
-exports.getAllWorkouts = (userID) => {
+exports.getAllWorkouts = function(userID) {
     return _db.query('SELECT * FROM workouts WHERE user_id = $1', userID)
 }

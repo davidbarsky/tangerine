@@ -3,10 +3,10 @@
 const redis = require('ioredis')
 const client = new redis(process.env.REDIS_URL)
 
-exports.setUser = (facebookID, bearerToken) => {
+exports.setUser = function(facebookID, bearerToken) {
     client.set(facebookID, bearerToken)
 }
 
-exports.getUser = (facebookID) => {
+exports.getUser = function(facebookID) {
     return client.get(facebookID)
 }
