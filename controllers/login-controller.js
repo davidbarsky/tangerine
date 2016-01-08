@@ -12,7 +12,7 @@ router.post('/new', (req, res, next) => {
     let uuid = auth.generateUUID()
     let bearerToken = auth.hashToken(uuid)
     
-    cache.setUser(req.body.facebookID, hashedToken)   
+    cache.setUser(req.body.facebookID, bearerToken)   
     let result = db.newUser(
         req.body.facebookID,
         hashedToken,
@@ -22,7 +22,7 @@ router.post('/new', (req, res, next) => {
     )
 
     result.then((data) => {
-        res.send(data)
+        res.send(bearerToken)
     }).catch(next)
 })
 
