@@ -1,17 +1,17 @@
 'use strict'
 
-const mocha = require('mocha')
-const chai = require('chai')
+const mocha = require('mocha');
+const chai = require('chai');
 const expect = require('chai').expect
-const chaiHTTP = require('chai-http')
+const chaiHTTP = require('chai-http');
 
-const token = require('../tests/sample-data.js')
-const server = require('../app.js')
-const cache = require('../persistance/cache.js')
+const token = require('../tests/sample-data.js');
+const server = require('../app.js');
+const cache = require('../persistance/cache.js');
 
-chai.use(chaiHTTP)
+chai.use(chaiHTTP);
 
-describe('Users resource', () => {
+describe('Users resource', () => {   
     it('should add a user', (done) => {
         chai.request(server)
             .post('/login/new')
@@ -23,15 +23,16 @@ describe('Users resource', () => {
             })
             .end((err, res) => {
                 expect(err).to.be.null
-                expect(res).to.have.status(200)
-                done()
-            })
-    })
+                expect(res).to.have.status(200);
+                expect(res.body.token).to.not.be.null
+                done();
+            });
+    });
     
     it('should cache the user’s credentials', (done) => {
         cache.getUser('124558987917426').then((result) => {
             expect(result).to.not.be.null
-            done()
-        })
-    })
-})
+            done();
+        });
+    });
+});

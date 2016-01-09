@@ -1,12 +1,13 @@
-'use strict'
+'use strict';
 
-const redis = require('ioredis')
-const client = new redis(process.env.REDIS_URL)
+const Redis = require('ioredis');
+const client = new Redis(process.env.REDIS_URL);
 
-exports.setUser = function(facebookID, bearerToken) {
-    client.set(facebookID, bearerToken)
-}
+
+exports.setUser = (facebookID, bearerToken) => {
+    client.set(facebookID, bearerToken);
+};
 
 exports.getUser = function(facebookID) {
-    return client.get(facebookID)
-}
+    return client.get(facebookID);
+};

@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-const express = require('express')
-const db = require('../persistance/database.js')
+const express = require('express');
+const db = require('../persistance/database.js');
 
-const router = express.Router()
+const router = express.Router();
 
-module.exports = router
+module.exports = router;
